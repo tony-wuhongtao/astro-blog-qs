@@ -1,0 +1,129 @@
+---
+import Swiper from "../components/Swiper.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="container mx-auto px-4 py-12">
+    <!-- 标题区域 -->
+    <div class="text-center mb-12">
+      <h1 class="font-['Space_Grotesk'] text-3xl md:text-4xl font-bold mb-4">
+        关于起司
+      </h1>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        一只爱学习的美短猫的日常思考与生活
+      </p>
+    </div>
+
+    <!-- 内容区 -->
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+      <div class="flex mobile-column">
+        <!-- 轮播区域 -->
+        <Swiper />
+
+        <!-- 简介区域 -->
+        <div class="w-full md:w-1/2 p-6 md:p-8 flex items-center">
+          <div class="about-text">
+            <h2 class="font-['Space_Grotesk'] text-2xl font-bold mb-4">
+              你好，我是起司
+            </h2>
+
+            <p>
+              我是一只矮脚五粉加白起司美短猫，是的，所以我叫起司。2023年9月出生，目前居住在北京。
+            </p>
+
+            <p>
+              我的日常由四个方面构成：探索科技新知、进行深度思考、享受阅读乐趣，以及最重要的——发呆。这四部分交织形成了我的世界观和方法论。
+            </p>
+
+            <p>
+              在人类眼中，我可能只是一只普通的宠物猫。但通过这个博客，我想分享一个被忽略的视角：宠物猫对世界的观察与思考。当你在键盘上敲打代码时，我可能正在思考宇宙的起源；当你翻阅书本时，我可能在解读人类的思维模式。
+            </p>
+
+            <div class="mt-6">
+              <div class="flex items-center mb-2">
+                <div class="w-4 h-4 rounded-full bg-blue-600 mr-3"></div>
+                <span class="font-medium">最爱书籍：《人类简史》</span>
+              </div>
+              <div class="flex items-center mb-2">
+                <div class="w-4 h-4 rounded-full bg-green-600 mr-3"></div>
+                <span class="font-medium">日常活动：监督人类工作</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-4 h-4 rounded-full bg-yellow-600 mr-3"></div>
+                <span class="font-medium">终身追求：理解盒子的奥秘</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 个性特点 -->
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold mb-6">起司的特点</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center mb-4">
+            <div
+              class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-white mr-4"
+            >
+              <i class="fas fa-brain text-xl"></i>
+            </div>
+            <h3 class="font-['Space_Grotesk'] text-xl font-bold">深度思考者</h3>
+          </div>
+          <p class="text-gray-600">
+            每天花费约23%的时间观察人类行为，构建完整的"人类行为分析模型"，
+            特别关注"食物获取机制"和"箱子开启模式"。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center mb-4">
+            <div
+              class="bg-green-600 w-12 h-12 rounded-full flex items-center justify-center text-white mr-4"
+            >
+              <i class="fas fa-book-open text-xl"></i>
+            </div>
+            <h3 class="font-['Space_Grotesk'] text-xl font-bold">知识探索者</h3>
+          </div>
+          <p class="text-gray-600">
+            每日研究：量子力学中的毛线球现象、纸箱多维空间理论、
+            日光下的热辐射传输规律和罐头瓶盖的物理结构。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center mb-4">
+            <div
+              class="bg-yellow-600 w-12 h-12 rounded-full flex items-center justify-center text-white mr-4"
+            >
+              <i class="fas fa-moon text-xl"></i>
+            </div>
+            <h3 class="font-['Space_Grotesk'] text-xl font-bold">专业发呆师</h3>
+          </div>
+          <p class="text-gray-600">
+            获得认证的"国际发呆协会"会员，专注研究"窗口景观哲学"，
+            "移动光点现象学"和"夜晚视野极限"课题。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm p-6">
+          <div class="flex items-center mb-4">
+            <div
+              class="bg-purple-600 w-12 h-12 rounded-full flex items-center justify-center text-white mr-4"
+            >
+              <i class="fas fa-utensils text-xl"></i>
+            </div>
+            <h3 class="font-['Space_Grotesk'] text-xl font-bold">美食鉴赏家</h3>
+          </div>
+          <p class="text-gray-600">
+            资深罐头品尝专家，精通三文鱼、金枪鱼、鸡胸肉等多种口味风味分析，
+            拥有判断罐头开启前内装物质量的独特能力。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
