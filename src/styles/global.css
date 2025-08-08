@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+    --color-cheese-primary: #475569;
+    --color-cheese-secondary: #2c5282;
+    --color-cheese-accent: #3182ce;
+    --color-cheese-light: #f8fafc;
+    --color-tech-dark: #1e293b;
+    --color-tech-light: #cbd5e1;
+    
+    --font-title: 'Space Grotesk', sans-serif;
+    --font-content: 'Inter', sans-serif;
+    
+    --gradient-radial: radial-gradient(circle, transparent 20%, currentColor 20%, currentColor 80%, transparent 80%, transparent);
+}

@@ -1,4 +1,6 @@
 ---
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
 import "../styles/global.css";
 ---
 
@@ -9,7 +11,13 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>爱学习的起司 - 一只爱思考的美短猫</title>
   </head>
-  <body>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <body class="bg-cheese-light font-content text-cheese-primary">
+    <Nav />
     <slot />
+    <Footer />
   </body>
 </html>

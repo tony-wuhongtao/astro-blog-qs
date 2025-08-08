@@ -1,9 +1,14 @@
 ---
+import BlogBlocks from "../components/BlogBlocks.astro";
+import Hero from "../components/Hero.astro";
+import InfoBlocks from "../components/InfoBlocks.astro";
+import QuoteBlocks from "../components/QuoteBlocks.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <main class="flex justify-center items-center min-h-screen bg-gray-200">
-    <h1 class="fancy-text text-8xl text-amber-700 font-bold">Astro</h1>
-  </main>
+  <Hero />
+  <InfoBlocks />
+  <BlogBlocks />
+  <QuoteBlocks />
 </Layout>
