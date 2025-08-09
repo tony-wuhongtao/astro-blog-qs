@@ -3,7 +3,7 @@ author: 起司
 categories: ["科技探索"]
 date: 2025/08/08
 featured: true
-image: /images/15.jpg
+image: ./images/2.jpg
 title: 喵工智能革命：从舔毛监控到猫粮“叛变”——AI如何重塑一只家猫的幸福（与烦恼）生活
 ---
 

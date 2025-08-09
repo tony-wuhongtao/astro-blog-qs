@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+const { post } = Astro.props;
+---
+
+<a
+  href={`/blog/${post.slug}`}
+  aria-label={`Read more about ${post.data.title}`}
+>
+  <div class="glow-card rounded-xl overflow-hidden bg-white p-6 flex mb-6">
+    <div class="w-24 h-24 rounded-xl overflow-hidden">
+      <Image
+        src={post.data.image}
+        alt={post.data.title}
+        width={600}
+        height={600 / 1.5}
+        format="webp"
+        class="rounded-2xl w-full h-full aspect-thumbnail object-cover"
+      />
+    </div>
+    <div class="ml-4 flex-1">
+      <div class="flex justify-between">
+        <div
+          class="text-xs font-medium text-white px-2 py-1 rounded bg-emerald-500 inline-block"
+        >
+          {post.data.categories.join(" | ")}
+        </div>
+        <div class="text-tech-dark text-xs">{post.data.date}</div>
+      </div>
+      <h3 class="text-lg font-bold mt-2 mb-2 text-tech-dark">
+        {post.data.title}
+      </h3>
+    </div>
+  </div>
+</a>

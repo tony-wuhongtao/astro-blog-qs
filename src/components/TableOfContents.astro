@@ -1,0 +1,31 @@
+---
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props as Props;
+---
+
+<div class="lg:w-1/4 hidden lg:block">
+  <div class="sticky top-[80px] self-start bg-white p-6 rounded-xl shadow-sm">
+    <h3 class="font-['Space_Grotesk'] text-lg font-bold mb-4">内容导航</h3>
+    <ul class="space-y-2">
+      {
+        headings.map((heading) => {
+          return (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                class="text-gray-600 hover:text-blue-600 transition"
+              >
+                {heading.text}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</div>

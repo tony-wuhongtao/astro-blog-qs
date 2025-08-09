@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+type Prop = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props as Prop;
+---
+
+<a
+  href={`/blog/${post.slug}`}
+  class="blog-card bg-white rounded-xl overflow-hidden relative"
+>
+  <div
+    class="category-badge bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-6"
+  >
+    {post.data.categories.join(" | ")}
+  </div>
+  <div class="h-88 mb-6">
+    <Image
+      src={post.data.image}
+      alt={post.data.title}
+      width={600}
+      height={600 / 1.5}
+      format="webp"
+      class="rounded-2xl w-full h-full aspect-thumbnail object-cover"
+    />
+  </div>
+  <div class="p-6">
+    <h3 class="font-['Space_Grotesk'] text-xl font-bold mb-3">
+      {post.data.title}
+    </h3>
+    <p class="text-gray-600 text-sm mb-4">
+      {post.body.slice(0, 100) || ""}
+    </p>
+    <div class="flex items-center text-xs text-gray-500">
+      <span>{post.data.date}</span>
+    </div>
+  </div>
+</a>

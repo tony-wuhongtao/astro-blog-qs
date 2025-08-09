@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import BlogCardList from "../components/BlogCardList.astro";
+import BlogTags from "../components/BlogTags.astro";
+import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
+
+const allPosts = await getCollection("posts");
+
+const allCategories = allPosts.flatMap((post) => post.data.categories);
+
+const uniqueCategories = [...new Set(allCategories)];
+---
+
+<Layout>
+  <main class="container mx-auto px-4 py-12">
+    <div class="mb-12">
+      <h1 class="font-['Space_Grotesk'] text-4xl font-bold mb-4">
+        起司的思考笔记
+      </h1>
+      <p class="text-gray-600 max-w-2xl">
+        记录一只爱思考的美短猫对科技、思维、阅读和发呆的独特见解
+      </p>
+    </div>
+
+    <!-- 分类筛选 -->
+    <BlogTags categories={uniqueCategories} />
+
+    <!-- 博客卡片网格 -->
+    <BlogCardList posts={allPosts} />
+
+    <!-- 分页 -->
+    <Pagination />
+  </main>
+</Layout>

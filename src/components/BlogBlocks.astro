@@ -1,3 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import FeaturedPostCard from "./FeaturedPostCard.astro";
+import FeaturedPostSmallCard from "./FeaturedPostSmallCard.astro";
+
+const allPosts = await getCollection("posts");
+
+const latestPosts = allPosts
+  .filter((post) => post.data.featured === true)
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  )
+  .slice(0, 4);
+---
+
 <section class="py-16 bg-gradient-to-br from-blue-50 to-white">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center mb-12">
@@ -7,7 +22,7 @@
         <span class="border-b-2 border-cheese-accent pb-2">最新文章</span>
       </h2>
       <a
-        href="#"
+        href="/blog"
         class="text-base font-medium text-cheese-accent flex items-center group"
       >
         全部文章 <i
@@ -18,155 +33,14 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- 特色博客卡片 -->
-      <div class="rounded-2xl overflow-hidden glow-card hover-scale">
-        <div class="h-80 relative">
-          <!-- 替换为博客主题的图片 -->
-          <div
-            class="bg-gradient-to-br from-blue-800 to-indigo-900 w-full h-full"
-          >
-          </div>
-          <div
-            class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 to-transparent p-8 flex flex-col justify-end"
-          >
-            <div class="flex items-center mb-4">
-              <div
-                class="text-xs font-medium text-white px-2 py-1 rounded bg-blue-500 inline-block"
-              >
-                科技探索
-              </div>
-              <div class="text-white text-xs ml-3">10月15日 • 8分钟阅读</div>
-            </div>
-            <h3 class="text-xl md:text-2xl font-bold text-white mb-3">
-              量子力学与猫：超越毛线球的物理世界
-            </h3>
-            <p class="text-white/80 mb-4">
-              探索量子纠缠现象，从猫咪视角解读微观世界中的奇妙关联。
-            </p>
-            <div class="flex items-center">
-              <div class="w-8 h-8 rounded-full overflow-hidden">
-                <!-- 替换为起司的头像 -->
-                <div
-                  class="bg-gradient-to-r from-yellow-400 to-orange-500 w-full h-full"
-                >
-                </div>
-              </div>
-              <span class="text-white text-sm ml-3">起司</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 博客列表 -->
+      <FeaturedPostCard post={latestPosts[0]} />
       <div>
-        <!-- 阅读类文章 -->
-        <div
-          class="glow-card rounded-xl overflow-hidden bg-white p-6 flex mb-6"
-        >
-          <div class="w-24 h-24 rounded-xl overflow-hidden">
-            <!-- 替换为文章配图 -->
-            <div
-              class="bg-gradient-to-br from-green-600 to-emerald-400 w-full h-full"
-            >
-            </div>
-          </div>
-          <div class="ml-4 flex-1">
-            <div class="flex justify-between">
-              <div
-                class="text-xs font-medium text-white px-2 py-1 rounded bg-emerald-500 inline-block"
-              >
-                阅读笔记
-              </div>
-              <div class="text-tech-dark text-xs">9月28日</div>
-            </div>
-            <h3 class="text-lg font-bold mt-2 mb-2 text-tech-dark">
-              为什么《三体》是最棒的猫科读物
-            </h3>
-            <p class="text-sm text-tech-dark opacity-75 mb-3">
-              从黑暗森林理论到降维打击，剖析这些概念对猫咪世界观的影响。
-            </p>
-            <div class="flex items-center mt-2">
-              <div class="w-6 h-6 rounded-full overflow-hidden">
-                <div
-                  class="bg-gradient-to-r from-yellow-400 to-orange-500 w-full h-full"
-                >
-                </div>
-              </div>
-              <span class="text-tech-dark text-xs ml-2">起司</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 思维类文章 -->
-        <div
-          class="glow-card rounded-xl overflow-hidden bg-white p-6 flex mb-6"
-        >
-          <div class="w-24 h-24 rounded-xl overflow-hidden">
-            <div
-              class="bg-gradient-to-br from-cyan-600 to-blue-400 w-full h-full"
-            >
-            </div>
-          </div>
-          <div class="ml-4 flex-1">
-            <div class="flex justify-between">
-              <div
-                class="text-xs font-medium text-white px-2 py-1 rounded bg-blue-500 inline-block"
-              >
-                思维探索
-              </div>
-              <div class="text-tech-dark text-xs">10月5日</div>
-            </div>
-            <h3 class="text-lg font-bold mt-2 mb-2 text-tech-dark">
-              猫咪的元认知：我们真的知道自己在想什么吗？
-            </h3>
-            <p class="text-sm text-tech-dark opacity-75 mb-3">
-              探索猫咪思维过程中的自我意识与反思能力。
-            </p>
-            <div class="flex items-center mt-2">
-              <div class="w-6 h-6 rounded-full overflow-hidden">
-                <div
-                  class="bg-gradient-to-r from-yellow-400 to-orange-500 w-full h-full"
-                >
-                </div>
-              </div>
-              <span class="text-tech-dark text-xs ml-2">起司</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 发呆类文章 -->
-        <div class="glow-card rounded-xl overflow-hidden bg-white p-6 flex">
-          <div class="w-24 h-24 rounded-xl overflow-hidden">
-            <div
-              class="bg-gradient-to-br from-pink-500 to-rose-300 w-full h-full"
-            >
-            </div>
-          </div>
-          <div class="ml-4 flex-1">
-            <div class="flex justify-between">
-              <div
-                class="text-xs font-medium text-white px-2 py-1 rounded bg-purple-500 inline-block"
-              >
-                发呆哲学
-              </div>
-              <div class="text-tech-dark text-xs">10月12日</div>
-            </div>
-            <h3 class="text-lg font-bold mt-2 mb-2 text-tech-dark">
-              窗台沉思录：发呆中的顿悟时刻
-            </h3>
-            <p class="text-sm text-tech-dark opacity-75 mb-3">
-              从日常发呆中获得的哲学思考与生命感悟。
-            </p>
-            <div class="flex items-center mt-2">
-              <div class="w-6 h-6 rounded-full overflow-hidden">
-                <div
-                  class="bg-gradient-to-r from-yellow-400 to-orange-500 w-full h-full"
-                >
-                </div>
-              </div>
-              <span class="text-tech-dark text-xs ml-2">起司</span>
-            </div>
-          </div>
-        </div>
+        <!-- 博客列表 -->
+        {
+          latestPosts
+            .slice(1)
+            .map((post) => <FeaturedPostSmallCard post={post} />)
+        }
       </div>
     </div>
   </div>

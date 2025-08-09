@@ -6,7 +6,7 @@ const postsCollection = defineCollection({
     z.object({
       author: z.string(),
       categories: z.array(z.string()),
-      date: z.string().transform(str=>format(new Date(str), 'MMMM d, yyyy')),
+      date: z.string().transform(str=>format(new Date(str), 'yyyy年M月d日')),
       featured: z.boolean().default(false),
       image: image(),
       title: z.string(),
