@@ -1,28 +1,29 @@
 ---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl?: string;
+}
 
+const { currentPage, totalPages, baseUrl = "/blog" } = Astro.props as Props;
 ---
 
 <div class="flex justify-center mt-12">
   <div class="flex items-center space-x-2">
-    <button
-      class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center"
-    >
-      1
-    </button>
-    <button
-      class="bg-white hover:bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center transition"
-    >
-      2
-    </button>
-    <button
-      class="bg-white hover:bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center transition"
-    >
-      3
-    </button>
-    <button
-      class="bg-white hover:bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center transition"
-    >
-      <i class="fas fa-chevron-right"></i>
-    </button>
+    {
+      Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+        <a
+          href={`${baseUrl}/${pageNum}`}
+          class={`w-10 h-10 rounded-full flex items-center justify-center transition ${
+            currentPage === pageNum
+              ? "bg-blue-600 text-white"
+              : "bg-white hover:bg-gray-100 border border-gray-200"
+          }`}
+          aria-label={`第${pageNum}页`}
+        >
+          {pageNum}
+        </a>
+      ))
+    }
   </div>
 </div>

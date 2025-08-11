@@ -1,5 +1,5 @@
 ---
-
+import BlogCategories from "./BlogCategories.astro";
 ---
 
 <footer class="bg-tech-dark text-white py-16">
@@ -26,26 +26,7 @@
       <div>
         <h4 class="text-lg font-bold mb-4">分类浏览</h4>
         <div class="flex flex-wrap gap-2">
-          <a
-            href="#"
-            class="bg-white/10 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition"
-            >科技探索</a
-          >
-          <a
-            href="#"
-            class="bg-white/10 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition"
-            >思维探索</a
-          >
-          <a
-            href="#"
-            class="bg-white/10 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition"
-            >阅读笔记</a
-          >
-          <a
-            href="#"
-            class="bg-white/10 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition"
-            >发呆哲学</a
-          >
+          <BlogCategories />
         </div>
       </div>
 

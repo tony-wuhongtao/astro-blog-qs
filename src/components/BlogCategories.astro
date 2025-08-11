@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+const allCategories = allPosts.flatMap((post) => post.data.categories);
+const uniqueCategories = [...new Set(allCategories)];
+
+// 获取当前分类属性
+const { currentCategory } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-3 mb-8">
+  {
+    uniqueCategories?.map((category: string) => {
+      return (
+        <a
+          href={`/category/${category}/1`}
+          class={` text-white hover:bg-gray-500 px-4 py-2 rounded-full font-normal transition ${currentCategory === category ? "bg-blue-700 text-white" : "bg-gray-600"}`}
+        >
+          {category}
+        </a>
+      );
+    })
+  }
+</div>

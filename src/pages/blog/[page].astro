@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import BlogCardList from "../../components/BlogCardList.astro";
+import Layout from "../../layouts/Layout.astro";
+import Pagination from "../../components/Pagination.astro";
+import BlogCategories from "../../components/BlogCategories.astro";
+
+export async function getStaticPaths({ paginate }) {
+  // 获取所有文章并按日期排序（最新的在前）
+  const allPosts = (await getCollection("posts")).sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
+
+  // 从环境变量获取每页文章数量，默认为3
+  const postsPerPage = parseInt(import.meta.env.POSTS_PER_PAGE) || 3;
+
+  // 分页
+  return paginate(allPosts, { pageSize: postsPerPage });
+}
+
+const { page } = Astro.props;
+const { data: posts, currentPage, lastPage: totalPages } = page;
+---
+
+<Layout>
+  <main class="container mx-auto px-4 py-12 blog-page page-transition">
+    <div class="mb-12">
+      <h1 class="font-['Space_Grotesk'] text-4xl font-bold mb-4">
+        起司的思考笔记
+      </h1>
+      <p class="text-gray-600 max-w-2xl">
+        记录一只爱思考的美短猫对科技、思维、阅读和发呆的独特见解
+      </p>
+    </div>
+
+    <!-- 分类筛选 -->
+    <BlogCategories />
+
+    <!-- 博客卡片网格 -->
+    <BlogCardList posts={posts} />
+
+    <!-- 分页 -->
+    {
+      totalPages > 1 && (
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      )
+    }
+  </main>
+</Layout>

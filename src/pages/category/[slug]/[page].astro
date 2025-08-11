@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import BlogCardList from "../../../components/BlogCardList.astro";
+import Layout from "../../../layouts/Layout.astro";
+import Pagination from "../../../components/Pagination.astro";
+import BlogCategories from "../../../components/BlogCategories.astro";
+
+export async function getStaticPaths({ paginate }) {
+  // 获取所有文章并按日期排序（最新的在前）
+  const allPosts = (await getCollection("posts")).sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  );
+
+  // 获取所有分类
+  const allCategories = allPosts.flatMap((post) => post.data.categories);
+  const categories = Array.from(new Set(allCategories));
+
+  // 从环境变量获取每页文章数量，默认为3
+  const postsPerPage = parseInt(import.meta.env.POSTS_PER_PAGE) || 3;
+
+  // 为每个分类生成分页路径
+  const paths = [];
+  for (const category of categories) {
+    const categoryPosts = allPosts.filter((post) =>
+      post.data.categories.includes(category)
+    );
+    const paginatedPaths = paginate(categoryPosts, {
+      pageSize: postsPerPage,
+      params: { slug: category },
+    });
+    paths.push(...paginatedPaths);
+  }
+  return paths;
+}
+
+const { page } = Astro.props;
+const { slug } = Astro.params;
+const { data: posts, currentPage, lastPage: totalPages } = page;
+---
+
+<Layout>
+  <main class="container mx-auto px-4 py-12 blog-page page-transition">
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold mb-4">
+        起司的思考笔记<br />
+      </h1>
+      <span class="text-gray-600 text-2xl mb-6">
+        [{slug}] 分类下的文章
+      </span>
+    </div>
+
+    <!-- 分类筛选 -->
+    <BlogCategories currentCategory={slug} />
+
+    <!-- 博客卡片网格 -->
+    <BlogCardList posts={posts} />
+
+    <!-- 分页 -->
+    {
+      totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl={`/category/${slug}`}
+        />
+      )
+    }
+  </main>
+</Layout>
