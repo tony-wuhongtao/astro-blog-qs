@@ -2,6 +2,9 @@
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import "../styles/global.css";
+
+const { title = "爱学习的起司", description = "一只爱思考的美短猫" } =
+  Astro.props;
 ---
 
 <!doctype html>
@@ -9,12 +12,14 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>爱学习的起司 - 一只爱思考的美短猫</title>
-  </head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+    <link rel="icon" type="image/jpg" href="/qs.jpg" />
+    <title>{title} - {description}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    /></head
+  >
+
   <body class="bg-cheese-light font-content text-cheese-primary">
     <Nav />
     <slot />

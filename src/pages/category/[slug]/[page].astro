@@ -38,7 +38,7 @@ const { slug } = Astro.params;
 const { data: posts, currentPage, lastPage: totalPages } = page;
 ---
 
-<Layout>
+<Layout title={slug}>
   <main class="container mx-auto px-4 py-12 blog-page page-transition">
     <div class="mb-12">
       <h1 class="text-4xl font-bold mb-4">

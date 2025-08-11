@@ -17,7 +17,7 @@ const { post } = Astro.props;
 const { Content, headings } = await post.render();
 ---
 
-<Layout>
+<Layout title={post.data.title}>
   <!-- 博客详情内容 -->
   <main class="container mx-auto px-4 py-12 blog-page page-transition">
     <div class="flex flex-col lg:flex-row gap-8">
